@@ -1,0 +1,72 @@
+{
+  "name": "Retell call_analyzed -> Google Sheets (handoff closer)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "retell-call-analyzed",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "a1b2c3d4-0001-4000-8000-000000000001",
+      "name": "Webhook Retell",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "webhookId": "retell-call-analyzed"
+    },
+    {
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "// Recibe el webhook de Retell. Solo procesa el evento call_analyzed\n// (call_ended NO trae custom_analysis_data todavia).\nconst raw = $input.first().json;\nconst b = raw.body || raw;\nconst event = b.event;\nif (event && event !== 'call_analyzed') {\n  return []; // ignora call_started / call_ended\n}\n\nconst call = b.call || b;\nconst a = call.call_analysis || {};\nconst c = a.custom_analysis_data || {};\nconst dyn = call.retell_llm_dynamic_variables || {};\n\nlet estado = 'completada';\nconst reason = (call.disconnection_reason || '').toLowerCase();\nif (a.in_voicemail || /voicemail|machine|answering/.test(reason)) estado = 'buzon';\nelse if (call.call_status && call.call_status !== 'ended') estado = call.call_status;\n\nreturn [{\n  json: {\n    fecha: new Date().toISOString(),\n    empresa: dyn.company_name || '',\n    telefono: call.to_number || '',\n    estado_llamada: estado,\n    envia_a_canarias: c.envia_a_canarias ?? '',\n    interesado: c.interesado ?? '',\n    tipo_mercancia: c.tipo_mercancia ?? '',\n    origen_mercancia: c.origen_mercancia ?? '',\n    destino_mercancia: c.destino_mercancia ?? '',\n    frecuencia_y_volumen: c.frecuencia_y_volumen ?? '',\n    operador_actual: c.operador_actual ?? '',\n    mejoras_deseadas: c.mejoras_deseadas ?? '',\n    es_decisor: c.es_decisor ?? '',\n    contacto_decisor: c.contacto_decisor ?? '',\n    callback_dia_franja: c.callback_dia_franja ?? '',\n    solo_email: c.solo_email ?? '',\n    opt_out: c.opt_out ?? '',\n    resumen: a.call_summary || '',\n    grabacion_url: call.recording_url || '',\n    closer_status: 'pendiente'\n  }\n}];"
+      },
+      "id": "a1b2c3d4-0002-4000-8000-000000000002",
+      "name": "Construir ficha",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "",
+          "mode": "list",
+          "cachedResultName": "SELECCIONA TU HOJA"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "",
+          "mode": "list",
+          "cachedResultName": "SELECCIONA LA PESTANA"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": ["telefono"]
+        },
+        "options": {}
+      },
+      "id": "a1b2c3d4-0003-4000-8000-000000000003",
+      "name": "Google Sheets append",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [720, 300]
+    }
+  ],
+  "connections": {
+    "Webhook Retell": {
+      "main": [[{ "node": "Construir ficha", "type": "main", "index": 0 }]]
+    },
+    "Construir ficha": {
+      "main": [[{ "node": "Google Sheets append", "type": "main", "index": 0 }]]
+    }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "pinData": {},
+  "meta": {
+    "description": "Recibe el webhook call_analyzed de Retell, construye la ficha del lead y la anade como fila en Google Sheets para el closer. Campos alineados con el agente Transcoesca. Tras importar: configura la credencial de Google Sheets y selecciona documento + pestana. Copia la URL Production del Webhook y pegala en el webhook_url del agente de Retell."
+  }
+}

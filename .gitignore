@@ -1,0 +1,16 @@
+# Secretos / credenciales — NUNCA subir
+.env
+.env.local
+.env.*.local
+
+# Dependencias
+node_modules/
+
+# Datos con PII (teléfonos, transcripciones, resultados de llamadas) — NUNCA subir
+leads/*.csv
+leads/*.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
