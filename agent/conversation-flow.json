@@ -611,7 +611,7 @@
         },
         "instruction": {
           "type": "prompt",
-          "text": "Cierra el contacto, en tuteo. Primero, UNA sola vez, resume en una frase lo esencial (carga, ruta y contenedor) y di que el responsable comercial preparara la oferta. Luego, en UNA o DOS preguntas naturales (no de una en una), recoge lo que falte: si prefiere que le llamemos o por email; si es llamada, el dia y la franja concretos; y el email de contacto. NO repreguntes lo que ya te haya dicho: si ya te dio dia, hora o correo, solo confirmalo en media frase. En cuanto lo tengas, cierra; no lo trocees en varios pasos."
+          "text": "Cierra el contacto, en tuteo. Primero, UNA sola vez, resume en una frase lo esencial (carga, ruta y contenedor) y di que el responsable comercial preparara la oferta. Luego cierra en UNA pregunta natural: si prefiere llamada o email. Si elige LLAMADA, pide solo el dia y la franja (el email NO hace falta; no lo pidas salvo que te lo ofrezca). Si elige EMAIL, pide el correo. NO repreguntes ni reconfirmes lo que ya te haya dicho. En cuanto tengas lo justo (preferencia + dia/franja si es llamada, o el correo si es email), cierra ya; NO hagas una segunda ronda de confirmacion."
         },
         "name": "Resumen y preferencia",
         "edges": [
@@ -880,7 +880,7 @@
       {
         "instruction": {
           "type": "prompt",
-          "text": "No des precios. Responde en tuteo, con una variacion natural de: \"Buena pregunta, pero no te suelto un numero al tuntun porque depende mucho de la ruta y del volumen. Justo por eso te cojo los datos y el responsable comercial te pasa una tarifa cerrada.\" Luego retoma donde estabas."
+          "text": "No des precios. Responde en tuteo, con una variacion natural de: \"Te lo puedo afinar enseguida, pero para no darte un numero que luego no sea realista necesito un par de datos rapidos; con eso el responsable comercial te pasa una tarifa cerrada.\" Luego retoma donde estabas."
         },
         "name": "Global: piden precio",
         "global_node_setting": {
