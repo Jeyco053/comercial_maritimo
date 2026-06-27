@@ -46,7 +46,11 @@
 | `tipo_servicio` | Text | Combinación de puntos (PUERTA/PUERTA, MUELLE/MUELLE, MUELLE/PUERTA, ALMACEN/MUELLE…) | — |
 | `trincaje_necesario` | Boolean | ¿La carga necesita trincaje (amarre)? | — |
 | `trincaje_quien` | Selector | Quién hace el trincaje | `CLIENTE`, `PROVEEDOR`, `NUESTRO_TRANSPORTISTA` |
-| `trincaje_material` | Text | Material: cinta, plástico y/o cantoneras | — |
+| `trincaje_certificado` | Text | ¿Llega trincado y certificado para embarque, o necesitan que coordinemos el servicio? | — |
+| `peso` | Text | Peso aproximado de la carga/máquina (clave en flat rack) | — |
+| `dimensiones` | Text | Largo × ancho × alto de la carga | — |
+| `grua_izado` | Text | Cómo se carga: grúa o carretilla; puntos de izado | — |
+| `permisos_especiales` | Boolean | Sobremedida → posibles permisos de transporte terrestre | — |
 | `imo_adr` | Boolean | ¿Lleva IMO o ADR (mercancía peligrosa)? | — |
 | `forma_mercancia` | Text | Cómo viene (paletizada, paquetes, sacas, granel/granalla) — reciclaje | — |
 | `volquete` | Boolean | ¿La entrega/descarga necesita volquete? | — |

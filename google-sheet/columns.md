@@ -5,20 +5,20 @@ que la **fila de cabecera de la hoja debe coincidir exactamente** con estos nomb
 que los campos de Post-Call Analysis en Retell → ver [`agent/post-call-analysis.md`](../agent/post-call-analysis.md)).
 
 > El agente pasó de "setter" a **recopilar datos para cotizar**, así que la hoja tiene ahora
-> 46 columnas: las 17 de cabecera/cualificación + las 26 de cotización (árbol de decisión) +
+> 50 columnas: las 17 de cabecera/cualificación + las 30 de cotización (árbol de decisión) +
 > `resumen`, `grabacion_url`, `closer_status` al final. Cualquier errata en un nombre rompe el
 > auto-mapeo.
 
 ## Cabecera (pégala en la fila 1 de la hoja — separada por tabuladores)
 
 ```
-fecha	empresa	telefono	estado_llamada	envia_a_canarias	interesado	tipo_mercancia	origen_mercancia	destino_mercancia	frecuencia_y_volumen	operador_actual	mejoras_deseadas	es_decisor	contacto_decisor	callback_dia_franja	solo_email	opt_out	tipo_carga	ruta_oferta	origen_completo	destino_completo	tipo_contenedor	tipo_servicio	trincaje_necesario	trincaje_quien	trincaje_material	imo_adr	forma_mercancia	volquete	refrigerado	temperatura	fitosanitaria	fitosanitaria_tipo	multistop	despachante_propio	descarga_hammar	transbordable	almacen_logistico	open_top_tapa	preferencia_contacto	email_contacto	solo_grupaje	grupaje_datos	resumen	grabacion_url	closer_status
+fecha	empresa	telefono	estado_llamada	envia_a_canarias	interesado	tipo_mercancia	origen_mercancia	destino_mercancia	frecuencia_y_volumen	operador_actual	mejoras_deseadas	es_decisor	contacto_decisor	callback_dia_franja	solo_email	opt_out	tipo_carga	ruta_oferta	origen_completo	destino_completo	tipo_contenedor	tipo_servicio	trincaje_necesario	trincaje_quien	trincaje_certificado	peso	dimensiones	grua_izado	permisos_especiales	imo_adr	forma_mercancia	volquete	refrigerado	temperatura	fitosanitaria	fitosanitaria_tipo	multistop	despachante_propio	descarga_hammar	transbordable	almacen_logistico	open_top_tapa	preferencia_contacto	email_contacto	solo_grupaje	grupaje_datos	resumen	grabacion_url	closer_status
 ```
 
 ## Versión CSV (Archivo → Importar)
 
 ```csv
-fecha,empresa,telefono,estado_llamada,envia_a_canarias,interesado,tipo_mercancia,origen_mercancia,destino_mercancia,frecuencia_y_volumen,operador_actual,mejoras_deseadas,es_decisor,contacto_decisor,callback_dia_franja,solo_email,opt_out,tipo_carga,ruta_oferta,origen_completo,destino_completo,tipo_contenedor,tipo_servicio,trincaje_necesario,trincaje_quien,trincaje_material,imo_adr,forma_mercancia,volquete,refrigerado,temperatura,fitosanitaria,fitosanitaria_tipo,multistop,despachante_propio,descarga_hammar,transbordable,almacen_logistico,open_top_tapa,preferencia_contacto,email_contacto,solo_grupaje,grupaje_datos,resumen,grabacion_url,closer_status
+fecha,empresa,telefono,estado_llamada,envia_a_canarias,interesado,tipo_mercancia,origen_mercancia,destino_mercancia,frecuencia_y_volumen,operador_actual,mejoras_deseadas,es_decisor,contacto_decisor,callback_dia_franja,solo_email,opt_out,tipo_carga,ruta_oferta,origen_completo,destino_completo,tipo_contenedor,tipo_servicio,trincaje_necesario,trincaje_quien,trincaje_certificado,peso,dimensiones,grua_izado,permisos_especiales,imo_adr,forma_mercancia,volquete,refrigerado,temperatura,fitosanitaria,fitosanitaria_tipo,multistop,despachante_propio,descarga_hammar,transbordable,almacen_logistico,open_top_tapa,preferencia_contacto,email_contacto,solo_grupaje,grupaje_datos,resumen,grabacion_url,closer_status
 ```
 
 ## Qué significa cada columna
@@ -55,7 +55,11 @@ fecha,empresa,telefono,estado_llamada,envia_a_canarias,interesado,tipo_mercancia
 | `tipo_servicio` | post-llamada | PUERTA/PUERTA, MUELLE/MUELLE… |
 | `trincaje_necesario` | post-llamada | ¿necesita trincaje? |
 | `trincaje_quien` | post-llamada | CLIENTE / PROVEEDOR / NUESTRO_TRANSPORTISTA |
-| `trincaje_material` | post-llamada | cinta / plástico / cantoneras |
+| `trincaje_certificado` | post-llamada | ¿llega trincado y certificado, o necesitan que coordinemos el servicio? |
+| `peso` | post-llamada | peso aproximado (clave en flat rack / carga especial) |
+| `dimensiones` | post-llamada | largo × ancho × alto |
+| `grua_izado` | post-llamada | grúa o carretilla; puntos de izado |
+| `permisos_especiales` | post-llamada | sobremedida → posibles permisos de transporte terrestre |
 | `imo_adr` | post-llamada | mercancía peligrosa IMO/ADR |
 | `forma_mercancia` | post-llamada | granel/paquete/sacas/granalla (reciclaje) |
 | `volquete` | post-llamada | ¿necesita volquete en la entrega? |
