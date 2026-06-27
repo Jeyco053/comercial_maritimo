@@ -48,7 +48,7 @@ por el transporte marítimo a Canarias.
 - Sí enviáis a Canarias, contenedor COMPLETO. Usáis un FLAT RACK del 40 porque la máquina no cabe en uno cerrado.
 - Ruta: Zaragoza a Las Palmas.
 - Si te preguntan por el trincaje (amarre): que lo haga vuestro transportista, no lo sabéis hacer vosotros.
-- Si te preguntan qué material: cintas y cantoneras.
+- Si te preguntan cómo se asegura o qué necesita: un flat rack con argollas o puntos de amarre (es maquinaria, no cantoneras).
 - Servicio: recogida en puerta; en destino lo recoge el cliente en el muelle.
 - Frecuencia: una o dos máquinas al mes. Ahora trabajáis con una transitaria local, Salvat.
 - Aceptas que te llamen el jueves por la tarde.

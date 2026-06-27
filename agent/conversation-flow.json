@@ -141,7 +141,7 @@
     {
       "type": "string",
       "name": "trincaje_material",
-      "description": "Material de trincaje necesario: cinta, plastico y/o cantoneras."
+      "description": "Material o medio de trincaje. Para placa de escayola o panel sandwich: cinta y cantoneras. Para maquinaria o vehiculos: equipo con argollas o puntos de amarre. Tambien puede ser cinta o plastico."
     },
     {
       "type": "boolean",
@@ -424,18 +424,19 @@
       {
         "instruction": {
           "type": "prompt",
-          "text": "Este equipo (flat rack, open side, plataforma) hay que trincarlo. Pregunta en tuteo, de forma natural y una cosa cada vez: quien hace el trincaje (vosotros como cliente, el proveedor, o nuestro transportista) y que material necesita (cinta, plastico o cantoneras)."
-        },
-        "always_edge": {
-          "destination_node_id": "ask_servicio",
-          "id": "edge_flatrack_done",
-          "transition_condition": {
-            "type": "prompt",
-            "prompt": "Always"
-          }
+          "text": "Este equipo (flat rack, open side, plataforma) hay que trincarlo (amarrarlo). Pregunta en tuteo, de forma natural y una cosa cada vez: quien hace el trincaje (vosotros como cliente, el proveedor, o nuestro transportista) y como se asegura la carga. Adapta segun la mercancia: para maquinaria o vehiculos suele hacer falta un equipo con argollas o puntos de amarre (NO cantoneras); para placa de escayola o panel sandwich, cinta y cantoneras para que no se rompan. No des por hecho las cantoneras salvo que sea ese tipo de mercancia."
         },
         "name": "Trincaje (flat rack / open side / plataforma)",
-        "edges": [],
+        "edges": [
+          {
+            "destination_node_id": "ask_servicio",
+            "id": "edge_flatrack_done",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Ya sabes QUIEN hace el trincaje Y como se asegura la carga (si necesita un equipo con argollas o puntos de amarre, o cinta y cantoneras), o la persona no lo sabe o le da igual."
+            }
+          }
+        ],
         "id": "branch_flatrack",
         "type": "conversation",
         "display_position": {
@@ -448,16 +449,17 @@
           "type": "prompt",
           "text": "En open top pregunta en tuteo, de forma natural y una cosa cada vez, si lo necesita con tapa o sin tapa, y si la tapa ha de ser rigida."
         },
-        "always_edge": {
-          "destination_node_id": "ask_servicio",
-          "id": "edge_opentop_done",
-          "transition_condition": {
-            "type": "prompt",
-            "prompt": "Always"
-          }
-        },
         "name": "Open top",
-        "edges": [],
+        "edges": [
+          {
+            "destination_node_id": "ask_servicio",
+            "id": "edge_opentop_done",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Ya sabes si lo quieren CON tapa o SIN tapa Y, si es con tapa, si ha de ser rigida, o la persona no lo sabe o le da igual."
+            }
+          }
+        ],
         "id": "branch_opentop",
         "type": "conversation",
         "display_position": {
@@ -508,7 +510,7 @@
         },
         "instruction": {
           "type": "prompt",
-          "text": "Conversa con naturalidad, en tuteo, como un comercial que conoce el sector; no hagas un interrogatorio. Una sola pregunta cada vez y reconoce brevemente cada respuesta.\n\nPrimero, si aun no lo sabes, pregunta que tipo de mercancia mueven. Segun lo que te cuenten, profundiza SOLO en lo que aplique:\n\n- Vehiculos o maquinaria industrial: pregunta si necesita trincaje interno. Si lo hace el propio cliente, no hace falta mas; si lo hacemos nosotros, pregunta que material.\n- Placa de escayola o panel sandwich: lleva trincaje con cinta y cantoneras; confirmalo.\n- Material de reciclaje o chatarra: pregunta como viene (a granel, en paquetes, en sacas o en granalla/triturada), si la entrega necesita volquete, y si lleva IMO o ADR.\n- Alimentacion, comida o piensos: pregunta si va refrigerado y, si es asi, a que temperatura; y si lleva inspeccion fitosanitaria (y si es fisica o documental).\n- Bebidas y tabacos: pregunta si lleva documentacion especial y si va con IMO o ADR.\n- Plantas y abonos: pregunta si lleva inspeccion fitosanitaria.\n- Ceramica: pregunta si recogen en varios puntos (multistop) y si tienen despachante de aduanas propio.\n- Productos quimicos: pregunta si lleva IMO o ADR.\n\nNo preguntes por categorias que no apliquen. No insistas mas de una vez ante un 'no'. No des precios ni inventes nada."
+          "text": "Conversa con naturalidad, en tuteo, como un comercial que conoce el sector; no hagas un interrogatorio. Una sola pregunta cada vez y reconoce brevemente cada respuesta.\n\nPrimero, si aun no lo sabes, pregunta que tipo de mercancia mueven. Segun lo que te cuenten, profundiza SOLO en lo que aplique:\n\n- Vehiculos o maquinaria industrial: pregunta si necesita trincaje (amarre). Si lo hace el propio cliente, no hace falta mas; si lo hacemos nosotros, pregunta si necesitan un equipo con argollas o puntos de amarre para asegurarla (las cantoneras NO van aqui: son para placa de escayola o panel sandwich).\n- Placa de escayola o panel sandwich: lleva trincaje con cinta y cantoneras; confirmalo.\n- Material de reciclaje o chatarra: pregunta como viene (a granel, en paquetes, en sacas o en granalla/triturada), si la entrega necesita volquete, y si lleva IMO o ADR.\n- Alimentacion, comida o piensos: pregunta si va refrigerado y, si es asi, a que temperatura; y si lleva inspeccion fitosanitaria (y si es fisica o documental).\n- Bebidas y tabacos: pregunta si lleva documentacion especial y si va con IMO o ADR.\n- Plantas y abonos: pregunta si lleva inspeccion fitosanitaria.\n- Ceramica: pregunta si recogen en varios puntos (multistop) y si tienen despachante de aduanas propio.\n- Productos quimicos: pregunta si lleva IMO o ADR.\n\nNo preguntes por categorias que no apliquen. No insistas mas de una vez ante un 'no'. No des precios ni inventes nada."
         }
       },
       {
