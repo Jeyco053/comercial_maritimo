@@ -1,21 +1,28 @@
 # Mensaje inicial del agente (Begin Message en Retell)
 
-Tu prompt (Paso 1) dice "Saluda con el mensaje inicial", pero ese texto NO está en el
-prompt: va en el campo **Begin Message / Welcome message** de Retell (lo primero que dice
-el agente, porque en outbound **el agente habla primero**).
+Lo primero que dice el agente en outbound (el agente habla primero).
 
-Aquí va el aviso legal obligatorio (IA + grabación). Pégalo en **Begin Message**:
+> **Con el Conversation Flow** (`agent/conversation-flow.json`), este mensaje lo emite el
+> **nodo `greeting`** (no hay un campo "Begin Message" aparte). Además, `handbook_config.ai_disclosure`
+> está en **`true`**, así que **Retell añade la divulgación de IA automáticamente**: por eso el
+> `greeting` solo menciona la **grabación** y no repite "asistente con inteligencia artificial"
+> (si no, sonaría dos veces). Este `.md` queda como referencia del texto y para el agente
+> single-prompt legacy.
+
+Texto (en **tuteo**, coherente con la guía de la empresa):
 
 ```
-Hola, buenos días. Le llama Jose, un asistente virtual con inteligencia artificial de
-Transcoesca. Le informo de que esta llamada queda grabada. ¿Le pillo en buen momento?
-Solo le robo treinta segundos.
+Hola, soy Jose, de Transcoesca, una transitaria de transporte marítimo y grupaje entre la Península y Canarias y entre las islas. Te aviso de que la llamada queda grabada. ¿Te pillo en buen momento?
 ```
 
 **Notas:**
 - Configura el agente para que **hable primero** (Agent speaks first / Begin with agent).
 - Mantén la **grabación activada** (la estás anunciando, es legal y la necesitas para el
-  closer y para revisar llamadas).
-- Si prefieres que el saludo varíe, puedes dejar Begin Message más corto e incluir la
-  divulgación al principio del prompt — pero **el aviso de IA + grabación tiene que sonar
-  sí o sí en la primera frase**.
+  responsable comercial y para revisar llamadas).
+- **Tuteo** en todo (tú/vosotros), nunca usted: lo pide la guía de comerciales de Transcoesca.
+- Divulgación de IA: la añade Retell por `ai_disclosure: true`. Si en tu plan/instancia esa opción
+  no estuviera activa, añade tú la frase: *"…soy Jose, un asistente con inteligencia artificial de
+  Transcoesca…"* para cumplir el AI Act.
+- **Variante más comercial (para A/B):** anclar el motivo desde el segundo 1 — *"…¿Hacéis algún
+  envío marítimo o grupaje a Canarias o entre islas?"* directamente tras el saludo. Puede subir o
+  bajar la tasa según el sector; mídelo.

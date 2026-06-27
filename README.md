@@ -1,8 +1,10 @@
-# Comercial Marítimo — Agente de voz IA (Setter) para transporte a Canarias
+# Comercial Marítimo — Agente de voz IA para transporte a Canarias (Transcoesca)
 
-Agente de voz con IA que hace la **primera llamada** a negocios para ofrecer **transporte marítimo de mercancías a Canarias**, cualifica al lead y deja una **ficha lista** en Google Sheets para que un **closer humano** haga la segunda llamada.
+Agente de voz con IA que hace la **primera llamada** a negocios para ofrecer **transporte marítimo de mercancías a Canarias** (transitaria: Península↔Canarias, entre islas, y puntualmente Baleares/internacional), **recopila todos los datos necesarios para cotizar** y deja una **ficha lista** en Google Sheets. Con esos datos, el **responsable comercial** prepara la oferta y la entrega en una **2ª llamada o por email, según prefiera el cliente**.
 
-> **MVP config-first:** casi todo es configuración de servicios. El valor está en el **prompt** (`agent/prompt.md`) y los **campos post-llamada** (`agent/post-call-analysis.md`). El único "código" es un script de normalización de teléfonos y un workflow de n8n.
+> **Agente productivo = Conversation Flow** (`agent/conversation-flow.json`): un **árbol de decisión** en **tuteo** con ramas por tipo de mercancía y contenedor (trincaje, IMO/ADR, fitosanitaria, hammar, transbordo, grupaje…). El antiguo single-prompt (`agent/prompt.md`) queda **legacy**.
+
+> **MVP config-first:** casi todo es configuración de servicios. El valor está en el **flow** (`agent/conversation-flow.json`) y los **campos post-llamada** (`agent/post-call-analysis.md`). El único "código" es un script de normalización de teléfonos y un workflow de n8n.
 
 ---
 
@@ -28,8 +30,10 @@ Retell Batch Call  →  Agente Setter (voz castellana)  →  cuelga
 
 | Carpeta / fichero | Qué es |
 |---|---|
-| `agent/prompt.md` | System prompt del agente (pegar en Retell) |
-| `agent/post-call-analysis.md` | Campos estructurados a extraer tras la llamada |
+| `agent/conversation-flow.json` | **Agente productivo:** Conversation Flow (árbol de decisión) importable en Retell |
+| `agent/prompt.md` | ⚠️ Legacy: system prompt single-prompt (histórico) |
+| `agent/begin-message.md` | Mensaje inicial (lo emite el nodo `greeting` del flow) |
+| `agent/post-call-analysis.md` | Campos estructurados a extraer tras la llamada (~40) |
 | `agent/voicemail.md` | Mensaje de buzón de voz |
 | `leads/apify-config.md` | Cómo configurar el scraper de Google Maps |
 | `scripts/normalize-phones.mjs` | Apify (JSON) → CSV E.164 listo para Retell Batch |
@@ -59,13 +63,14 @@ Retell solo da números US/CA, así que traemos uno español.
 2. Activa **Elastic SIP Trunking** en Twilio y apunta el trunk a Retell.
 3. En **Retell → Phone Numbers → Import**, importa el número en formato E.164 (`+34…`).
 
-### Paso 1 — Crear el agente en Retell
-1. **Create Agent** → idioma **Spanish (Spain)**.
-2. **Voice:** añade una voz **castellana de ElevenLabs** (prueba 2–3, elige la más natural).
-3. **Prompt:** pega `agent/prompt.md`. Rellena `[EMPRESA]`, `[NOMBRE_AGENTE]`, `[TELEFONO_DEVOLUCION]`.
-4. **Post-Call Analysis:** crea los campos de `agent/post-call-analysis.md`.
-5. **Voicemail detection:** ON → acción **Leave a message** con el texto de `agent/voicemail.md`.
+### Paso 1 — Crear el agente en Retell (Conversation Flow)
+1. **Import Agent** → sube `agent/conversation-flow.json` (ya trae idioma `es-ES`, voz `retell-Cimo`, modelo, el árbol de nodos y los ~40 campos de Post-Call Analysis). O **Create Agent → Conversation Flow** y reconstruye los nodos a partir del JSON.
+2. **Voice:** revisa/ajusta la voz **castellana** (prueba 2–3, elige la más natural). El flow viene con `retell-Cimo`.
+3. **Revisa el árbol** en el editor visual: nodos de la espina (apertura → filtro → completo/grupaje → ruta → contenedor/servicio → cierre), subagents (mercancía, transversales, grupaje) y nodos globales (objeciones, precio, opt-out…).
+4. **Post-Call Analysis:** ya viene en el JSON. Si tu plan no admite tipo *Selector*, los enumerados están como *Text* con las opciones en la descripción.
+5. **Voicemail detection:** ON → acción **Leave a message** con el texto de `agent/voicemail.md` (el flow también tiene `global_contestador`).
 6. **Webhook:** pon el `webhook_url` **a nivel de agente** apuntando a tu n8n (Paso 3). Así se aíslan los eventos de este agente de los de Bookia.
+7. **Pendiente de rellenar:** `[TELEFONO_DEVOLUCION]` en `agent/voicemail.md`.
 
 ### Paso 2 — Captar leads (Apify)
 1. Configura el **Google Maps Scraper** siguiendo `leads/apify-config.md` (sector + zona).
