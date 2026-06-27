@@ -39,19 +39,21 @@ marítimo a Canarias. Compórtate así:
 - Si te piden email, das marta@ferreterialevante.es.
 ```
 
-### P2 — Flat rack (trincaje, lo hace el transportista) · `company_name: Maquinaria Aragón`
-*Verifica:* `branch_flatrack`, `tipo_contenedor=FLAT RACK`, `trincaje_necesario=true`, `trincaje_quien=NUESTRO_TRANSPORTISTA`, `trincaje_material`.
+### P2 — Flat rack / maquinaria (datos para cotizar) · `company_name: Maquinaria Aragón`
+*Verifica:* `branch_flatrack` (ahora subagent), `tipo_contenedor=FLAT RACK`, `peso`, `dimensiones`, `grua_izado`, `permisos_especiales` (sobremedida por alto/ancho), `trincaje_quien`, `trincaje_certificado`. Y que **NO** pregunte por material de amarre ni "cómo llega a vuestras instalaciones".
 ```
 Eres Luis, de Maquinaria Aragón, fabricante de maquinaria industrial. Te llama una transitaria
 por el transporte marítimo a Canarias.
-- Español de España, frases cortas, responde solo a lo que te preguntan.
-- Sí enviáis a Canarias, contenedor COMPLETO. Usáis un FLAT RACK del 40 porque la máquina no cabe en uno cerrado.
-- Ruta: Zaragoza a Las Palmas.
-- Si te preguntan por el trincaje (amarre): que lo haga vuestro transportista, no lo sabéis hacer vosotros.
-- Si te preguntan cómo se asegura o qué necesita: un flat rack con argollas o puntos de amarre (es maquinaria, no cantoneras).
-- Servicio: recogida en puerta; en destino lo recoge el cliente en el muelle.
-- Frecuencia: una o dos máquinas al mes. Ahora trabajáis con una transitaria local, Salvat.
-- Aceptas que te llamen el jueves por la tarde.
+- Español de España, frases cortas, responde solo a lo que te preguntan (no adelantes todo).
+- Sí enviáis a Canarias, contenedor COMPLETO, en FLAT RACK de 40 porque la máquina no cabe en uno cerrado.
+- Ruta: Zaragoza a Las Palmas. Servicio: recogida en puerta; en destino lo recoge el cliente en el muelle.
+- Qué máquina: una prensa hidráulica industrial.
+- Peso: unas 12 toneladas.
+- Dimensiones: 4 m de largo, 2,2 m de ancho y 2,8 m de alto.
+- Carga: se sube con grúa; la máquina tiene cáncamos / puntos de izado.
+- Trincaje: lo hace vuestro transportista y os la entrega ya trincada, pero SIN certificar; os interesa que la transitaria coordine la certificación del trincaje.
+- Frecuencia: una o dos máquinas al mes. Ahora con una transitaria local, Salvat.
+- Preferencia: que os llamen el jueves por la tarde.
 ```
 
 ### P3 — Open side (trincaje del cliente) · `company_name: Carpintería Norte`
