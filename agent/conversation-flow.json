@@ -298,7 +298,7 @@
         "name": "Motivo y filtro",
         "edges": [
           {
-            "destination_node_id": "ask_ruta",
+            "destination_node_id": "split_carga",
             "id": "edge_pitch_completo",
             "transition_condition": {
               "type": "prompt",
@@ -352,7 +352,7 @@
         },
         "instruction": {
           "type": "prompt",
-          "text": "Pregunta en tuteo si mueven contenedor completo o grupaje, con una variacion natural de: \"Perfecto. Para poder pasarte una tarifa, soleis mover contenedores completos, grupaje o que tipo de servicio?\" Una pregunta y espera."
+          "text": "Aqui aclaras si es contenedor completo o grupaje, en tuteo. Si por lo que YA han dicho esta claro que es contenedor completo (dijeron 'completo', un 20, un 40, un reefer o un equipo especial), NO lo preguntes: reconocelo en media frase y avanza. Si dijeron solo grupaje, igual. Solo si NO esta claro (por ejemplo dijeron de forma generica 'contenedores', o aun no lo han dicho), preguntalo con una variacion natural de: soleis mover contenedor completo, o mas bien grupaje, alguna pallet suelta? Una pregunta y espera."
         },
         "name": "Completo o grupaje",
         "edges": [
@@ -361,7 +361,7 @@
             "id": "edge_split_completo",
             "transition_condition": {
               "type": "prompt",
-              "prompt": "El interlocutor menciona o da a entender contenedor completo (un contenedor, un 20, un 40, un reefer, un equipo) o que mueven completo. Es la opcion por defecto ante cualquier mencion de contenedor."
+              "prompt": "El interlocutor deja claro que es contenedor completo (dijo 'completo', un 20, un 40, un reefer o un equipo especial), ya sea de antes o al responder a la pregunta."
             }
           },
           {
