@@ -611,21 +611,21 @@
         },
         "instruction": {
           "type": "prompt",
-          "text": "Resume en una frase lo esencial (tipo de carga, origen-destino y contenedor) para confirmar que lo has cogido bien, agradece la info y di que el responsable comercial preparara la oferta. Luego pregunta como prefiere recibirla, con una variacion natural de: \"Prefieres que te llamemos para vertela con calma, o te la mandamos directamente por email?\" Una pregunta y espera."
+          "text": "Cierra el contacto, en tuteo. Primero, UNA sola vez, resume en una frase lo esencial (carga, ruta y contenedor) y di que el responsable comercial preparara la oferta. Luego, en UNA o DOS preguntas naturales (no de una en una), recoge lo que falte: si prefiere que le llamemos o por email; si es llamada, el dia y la franja concretos; y el email de contacto. NO repreguntes lo que ya te haya dicho: si ya te dio dia, hora o correo, solo confirmalo en media frase. En cuanto lo tengas, cierra; no lo trocees en varios pasos."
         },
         "name": "Resumen y preferencia",
         "edges": [
           {
-            "destination_node_id": "capture_email",
-            "id": "edge_pref_email",
+            "destination_node_id": "end_cotizar",
+            "id": "edge_close_done",
             "transition_condition": {
               "type": "prompt",
-              "prompt": "Prefiere recibir la oferta SOLO por email, sin llamada."
+              "prompt": "Ya tienes la preferencia de contacto y lo que aplique (dia y franja si es llamada, y/o el email), o el interlocutor no quiere concretar mas."
             }
           }
         ],
         "id": "close_recap",
-        "type": "conversation",
+        "type": "subagent",
         "display_position": {
           "x": 7206,
           "y": 1398
