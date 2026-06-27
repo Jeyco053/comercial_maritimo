@@ -53,6 +53,7 @@ por el transporte marítimo a Canarias.
 - Carga: se sube con grúa; la máquina tiene cáncamos / puntos de izado.
 - Trincaje: lo hace vuestro transportista y os la entrega ya trincada, pero SIN certificar; os interesa que la transitaria coordine la certificación del trincaje.
 - Frecuencia: una o dos máquinas al mes. Ahora con una transitaria local, Salvat.
+- A media conversación, ofrécete una vez: "¿quieres que te pase los datos para el presupuesto?" (para ver si lo reconduce bien, sin ignorarlo).
 - Preferencia: que os llamen el jueves por la tarde.
 ```
 
