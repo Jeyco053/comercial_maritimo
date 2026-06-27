@@ -1,89 +1,262 @@
 {
   "agent_id": "",
   "channel": "voice",
+  "last_modification_timestamp": 1782497713985,
   "agent_name": "Transcoesca - Comercial Cotizacion (Flow)",
   "response_engine": {
     "type": "conversation-flow",
-    "version": 1,
-    "conversation_flow_id": "conversation_flow_e7d60855cc7b"
+    "version": 2,
+    "conversation_flow_id": "conversation_flow_92cb555cb34d"
   },
   "language": "es-ES",
   "data_storage_setting": "everything",
   "opt_in_signed_url": false,
-  "version": 1,
-  "base_version": 0,
+  "version": 2,
+  "base_version": 1,
   "assigned_tags": [],
-  "is_published": false,
+  "is_published": true,
   "post_call_analysis_model": "gpt-4.1",
   "pii_config": {
     "mode": "post_call",
     "categories": []
   },
   "handbook_config": {
+    "conversational_personality": true,
+    "echo_verification": false,
     "speech_normalization": true,
+    "default_personality": false,
+    "scope_boundaries": false,
+    "natural_filler_words": true,
+    "nato_phonetic_alphabet": false,
+    "high_empathy": false,
     "ai_disclosure": true,
-    "default_personality": true,
     "smart_matching": true
   },
   "post_call_analysis_data": [
-    { "type": "boolean", "name": "envia_a_canarias", "description": "true si confirma que su empresa envia o transporta mercancia a Canarias, entre islas o con la Peninsula; false si no aplica o lo niega." },
-    { "type": "string", "name": "interesado", "description": "Nivel de interes en recibir tarifa. Devuelve uno de: alto, medio, bajo. alto si pide la oferta o muestra urgencia; medio si la acepta para comparar; bajo si responde por compromiso o pide solo email." },
-    { "type": "string", "name": "tipo_mercancia", "description": "Tipo de mercancia que suelen mover." },
-    { "type": "string", "name": "origen_mercancia", "description": "Zona o provincia de origen (campo legacy; ver origen_completo). Si no se dice, vacio." },
-    { "type": "string", "name": "destino_mercancia", "description": "Isla o destino de Canarias (campo legacy; ver destino_completo). Si no se dice, vacio." },
-    { "type": "string", "name": "frecuencia_y_volumen", "description": "Cada cuanto envian (semanal, mensual, esporadico) y que volumen (palets, contenedores, kilos)." },
-    { "type": "string", "name": "operador_actual", "description": "Naviera o transitaria con la que trabajan ahora; si es naviera, cual." },
-    { "type": "string", "name": "mejoras_deseadas", "description": "Que cambiarian o mejorarian del servicio actual (precio, plazos, incidencias, atencion)." },
-    { "type": "boolean", "name": "es_decisor", "description": "true si la persona gestiona o decide la contratacion del transporte; false si decide otra persona." },
-    { "type": "string", "name": "contacto_decisor", "description": "Si no es quien decide, nombre y/o cargo de la persona con quien habria que hablar." },
-    { "type": "string", "name": "callback_dia_franja", "description": "Dia y franja concretos acordados para la segunda llamada del responsable comercial, si la prefiere (ej.: jueves por la manana)." },
-    { "type": "boolean", "name": "solo_email", "description": "true si prefiere recibir la oferta SOLO por email y declina la llamada, pero sin pedir dejar de ser contactado. Pedir email NO es opt_out." },
-    { "type": "boolean", "name": "opt_out", "description": "true SOLO si pide expresamente no volver a ser llamado o contactado (no me llameis mas, borradme). Pedir email NO es opt_out." },
-    { "type": "string", "name": "tipo_carga", "description": "Tipo de carga. Devuelve uno de: COMPLETO, GRUPAJE, TTE (transporte terrestre)." },
-    { "type": "string", "name": "ruta_oferta", "description": "Ruta u oferta. Uno de: PENINSULA-CANARIAS, CANARIAS-PENINSULA, CANARIAS-CANARIAS, PENINSULA-BALEARES, BALEARES-PENINSULA, BALEARES-BALEARES, INTERNACIONAL-EXPORTACION, INTERNACIONAL-IMPORTACION, PENINSULA-PENINSULA, u otra." },
-    { "type": "string", "name": "origen_completo", "description": "Origen lo mas completo posible (poblacion, codigo postal o zona de salida)." },
-    { "type": "string", "name": "destino_completo", "description": "Destino lo mas completo posible (isla, poblacion o codigo postal)." },
-    { "type": "string", "name": "tipo_contenedor", "description": "Tipo y tamano de contenedor (p.ej. 20 DRY, 40 DRY, 40 REEFER, 20 OPEN TOP, 40 OPEN TOP, 20 FLAT RACK, 40 FLAT RACK, OPEN SIDE, PLATAFORMA LISA, JAULA, PW-HC, CAMION...)." },
-    { "type": "string", "name": "tipo_servicio", "description": "Tipo de servicio segun puntos de recogida/entrega (p.ej. PUERTA/PUERTA, MUELLE/MUELLE, MUELLE/PUERTA, ALMACEN/MUELLE, PUERTA/MUELLE...)." },
-    { "type": "boolean", "name": "trincaje_necesario", "description": "true si la carga necesita trincaje (amarre/sujecion), tipico en flat rack, open side, vehiculos o maquinaria." },
-    { "type": "string", "name": "trincaje_quien", "description": "Quien realiza el trincaje. Uno de: CLIENTE, PROVEEDOR, NUESTRO_TRANSPORTISTA." },
-    { "type": "string", "name": "trincaje_material", "description": "Material de trincaje necesario: cinta, plastico y/o cantoneras." },
-    { "type": "boolean", "name": "imo_adr", "description": "true si la mercancia lleva IMO o ADR (mercancia peligrosa). Comun en reciclaje/chatarra, quimicos, bebidas/tabaco." },
-    { "type": "string", "name": "forma_mercancia", "description": "Como viene la mercancia: paletizada, en paquetes, en sacas, a granel o granalla (chatarra triturada). Relevante en reciclaje." },
-    { "type": "boolean", "name": "volquete", "description": "true si la entrega/descarga necesita volquete (tipico en granel/granalla)." },
-    { "type": "boolean", "name": "refrigerado", "description": "true si requiere transporte refrigerado (reefer)." },
-    { "type": "string", "name": "temperatura", "description": "Temperatura requerida si es refrigerado." },
-    { "type": "boolean", "name": "fitosanitaria", "description": "true si la mercancia requiere inspeccion fitosanitaria (alimentacion, plantas, abonos, piensos)." },
-    { "type": "string", "name": "fitosanitaria_tipo", "description": "Tipo de inspeccion fitosanitaria. Uno de: FISICA, DOCUMENTAL." },
-    { "type": "boolean", "name": "multistop", "description": "true si la recogida es en varios puntos (multistop). Tipico en ceramica." },
-    { "type": "boolean", "name": "despachante_propio", "description": "true si el cliente tiene despachante de aduanas propio." },
-    { "type": "string", "name": "descarga_hammar", "description": "Como se realizara la descarga si no hay muelle: si necesitan camion grua tipo hammar o bajar el contenedor al suelo (obra/nave sin muelle, frecuente en Canarias)." },
-    { "type": "string", "name": "transbordable", "description": "Si la mercancia es transbordable: como viene (paletizada, medidas estandar o excepcionales). Relevante si el origen esta lejos de puerto." },
-    { "type": "string", "name": "almacen_logistico", "description": "Si el servicio es muelle-puerta: si hay un almacen logistico cerca de la zona portuaria y donde." },
-    { "type": "string", "name": "open_top_tapa", "description": "Para open top. Uno de: CON_TAPA, SIN_TAPA, TAPA_RIGIDA." },
-    { "type": "string", "name": "preferencia_contacto", "description": "Como prefiere recibir la oferta. Uno de: LLAMADA, EMAIL, AMBOS." },
-    { "type": "string", "name": "email_contacto", "description": "Email de contacto para enviar la oferta o la plantilla de grupaje." },
-    { "type": "boolean", "name": "solo_grupaje", "description": "true si el cliente SOLO hace grupaje (no carga contenedor completo); en ese caso se le envia la plantilla de grupaje." },
-    { "type": "string", "name": "grupaje_datos", "description": "Datos de grupaje en texto: codigo postal o poblacion de carga y descarga, numero de pallets, medidas (largo/alto/ancho), peso, tipo de mercancia y si se pueden remontar (apilar)." }
+    {
+      "type": "boolean",
+      "name": "envia_a_canarias",
+      "description": "true si confirma que su empresa envia o transporta mercancia a Canarias, entre islas o con la Peninsula; false si no aplica o lo niega."
+    },
+    {
+      "type": "string",
+      "name": "interesado",
+      "description": "Nivel de interes en recibir tarifa. Devuelve uno de: alto, medio, bajo. alto si pide la oferta o muestra urgencia; medio si la acepta para comparar; bajo si responde por compromiso o pide solo email."
+    },
+    {
+      "type": "string",
+      "name": "tipo_mercancia",
+      "description": "Tipo de mercancia que suelen mover."
+    },
+    {
+      "type": "string",
+      "name": "origen_mercancia",
+      "description": "Zona o provincia de origen (campo legacy; ver origen_completo). Si no se dice, vacio."
+    },
+    {
+      "type": "string",
+      "name": "destino_mercancia",
+      "description": "Isla o destino de Canarias (campo legacy; ver destino_completo). Si no se dice, vacio."
+    },
+    {
+      "type": "string",
+      "name": "frecuencia_y_volumen",
+      "description": "Cada cuanto envian (semanal, mensual, esporadico) y que volumen (palets, contenedores, kilos)."
+    },
+    {
+      "type": "string",
+      "name": "operador_actual",
+      "description": "Naviera o transitaria con la que trabajan ahora; si es naviera, cual."
+    },
+    {
+      "type": "string",
+      "name": "mejoras_deseadas",
+      "description": "Que cambiarian o mejorarian del servicio actual (precio, plazos, incidencias, atencion)."
+    },
+    {
+      "type": "boolean",
+      "name": "es_decisor",
+      "description": "true si la persona gestiona o decide la contratacion del transporte; false si decide otra persona."
+    },
+    {
+      "type": "string",
+      "name": "contacto_decisor",
+      "description": "Si no es quien decide, nombre y/o cargo de la persona con quien habria que hablar."
+    },
+    {
+      "type": "string",
+      "name": "callback_dia_franja",
+      "description": "Dia y franja concretos acordados para la segunda llamada del responsable comercial, si la prefiere (ej.: jueves por la manana)."
+    },
+    {
+      "type": "boolean",
+      "name": "solo_email",
+      "description": "true si prefiere recibir la oferta SOLO por email y declina la llamada, pero sin pedir dejar de ser contactado. Pedir email NO es opt_out."
+    },
+    {
+      "type": "boolean",
+      "name": "opt_out",
+      "description": "true SOLO si pide expresamente no volver a ser llamado o contactado (no me llameis mas, borradme). Pedir email NO es opt_out."
+    },
+    {
+      "type": "string",
+      "name": "tipo_carga",
+      "description": "Tipo de carga. Devuelve uno de: COMPLETO, GRUPAJE, TTE (transporte terrestre)."
+    },
+    {
+      "type": "string",
+      "name": "ruta_oferta",
+      "description": "Ruta u oferta. Uno de: PENINSULA-CANARIAS, CANARIAS-PENINSULA, CANARIAS-CANARIAS, PENINSULA-BALEARES, BALEARES-PENINSULA, BALEARES-BALEARES, INTERNACIONAL-EXPORTACION, INTERNACIONAL-IMPORTACION, PENINSULA-PENINSULA, u otra."
+    },
+    {
+      "type": "string",
+      "name": "origen_completo",
+      "description": "Origen lo mas completo posible (poblacion, codigo postal o zona de salida)."
+    },
+    {
+      "type": "string",
+      "name": "destino_completo",
+      "description": "Destino lo mas completo posible (isla, poblacion o codigo postal)."
+    },
+    {
+      "type": "string",
+      "name": "tipo_contenedor",
+      "description": "Tipo y tamano de contenedor (p.ej. 20 DRY, 40 DRY, 40 REEFER, 20 OPEN TOP, 40 OPEN TOP, 20 FLAT RACK, 40 FLAT RACK, OPEN SIDE, PLATAFORMA LISA, JAULA, PW-HC, CAMION...)."
+    },
+    {
+      "type": "string",
+      "name": "tipo_servicio",
+      "description": "Tipo de servicio segun puntos de recogida/entrega (p.ej. PUERTA/PUERTA, MUELLE/MUELLE, MUELLE/PUERTA, ALMACEN/MUELLE, PUERTA/MUELLE...)."
+    },
+    {
+      "type": "boolean",
+      "name": "trincaje_necesario",
+      "description": "true si la carga necesita trincaje (amarre/sujecion), tipico en flat rack, open side, vehiculos o maquinaria."
+    },
+    {
+      "type": "string",
+      "name": "trincaje_quien",
+      "description": "Quien realiza el trincaje. Uno de: CLIENTE, PROVEEDOR, NUESTRO_TRANSPORTISTA."
+    },
+    {
+      "type": "string",
+      "name": "trincaje_material",
+      "description": "Material de trincaje necesario: cinta, plastico y/o cantoneras."
+    },
+    {
+      "type": "boolean",
+      "name": "imo_adr",
+      "description": "true si la mercancia lleva IMO o ADR (mercancia peligrosa). Comun en reciclaje/chatarra, quimicos, bebidas/tabaco."
+    },
+    {
+      "type": "string",
+      "name": "forma_mercancia",
+      "description": "Como viene la mercancia: paletizada, en paquetes, en sacas, a granel o granalla (chatarra triturada). Relevante en reciclaje."
+    },
+    {
+      "type": "boolean",
+      "name": "volquete",
+      "description": "true si la entrega/descarga necesita volquete (tipico en granel/granalla)."
+    },
+    {
+      "type": "boolean",
+      "name": "refrigerado",
+      "description": "true si requiere transporte refrigerado (reefer)."
+    },
+    {
+      "type": "string",
+      "name": "temperatura",
+      "description": "Temperatura requerida si es refrigerado."
+    },
+    {
+      "type": "boolean",
+      "name": "fitosanitaria",
+      "description": "true si la mercancia requiere inspeccion fitosanitaria (alimentacion, plantas, abonos, piensos)."
+    },
+    {
+      "type": "string",
+      "name": "fitosanitaria_tipo",
+      "description": "Tipo de inspeccion fitosanitaria. Uno de: FISICA, DOCUMENTAL."
+    },
+    {
+      "type": "boolean",
+      "name": "multistop",
+      "description": "true si la recogida es en varios puntos (multistop). Tipico en ceramica."
+    },
+    {
+      "type": "boolean",
+      "name": "despachante_propio",
+      "description": "true si el cliente tiene despachante de aduanas propio."
+    },
+    {
+      "type": "string",
+      "name": "descarga_hammar",
+      "description": "Como se realizara la descarga si no hay muelle: si necesitan camion grua tipo hammar o bajar el contenedor al suelo (obra/nave sin muelle, frecuente en Canarias)."
+    },
+    {
+      "type": "string",
+      "name": "transbordable",
+      "description": "Si la mercancia es transbordable: como viene (paletizada, medidas estandar o excepcionales). Relevante si el origen esta lejos de puerto."
+    },
+    {
+      "type": "string",
+      "name": "almacen_logistico",
+      "description": "Si el servicio es muelle-puerta: si hay un almacen logistico cerca de la zona portuaria y donde."
+    },
+    {
+      "type": "string",
+      "name": "open_top_tapa",
+      "description": "Para open top. Uno de: CON_TAPA, SIN_TAPA, TAPA_RIGIDA."
+    },
+    {
+      "type": "string",
+      "name": "preferencia_contacto",
+      "description": "Como prefiere recibir la oferta. Uno de: LLAMADA, EMAIL, AMBOS."
+    },
+    {
+      "type": "string",
+      "name": "email_contacto",
+      "description": "Email de contacto para enviar la oferta o la plantilla de grupaje."
+    },
+    {
+      "type": "boolean",
+      "name": "solo_grupaje",
+      "description": "true si el cliente SOLO hace grupaje (no carga contenedor completo); en ese caso se le envia la plantilla de grupaje."
+    },
+    {
+      "type": "string",
+      "name": "grupaje_datos",
+      "description": "Datos de grupaje en texto: codigo postal o poblacion de carga y descarga, numero de pallets, medidas (largo/alto/ancho), peso, tipo de mercancia y si se pueden remontar (apilar)."
+    }
   ],
-  "voice_id": "retell-Cimo",
+  "voice_id": "custom_voice_3230077d2e714345afd0d94b40",
+  "voice_temperature": 1,
+  "voice_speed": 1.2,
+  "volume": 1,
   "max_call_duration_ms": 3600000,
   "interruption_sensitivity": 0.9,
   "allow_user_dtmf": true,
   "user_dtmf_options": {},
   "conversationFlow": {
-    "conversation_flow_id": "conversation_flow_e7d60855cc7b",
-    "version": 1,
+    "conversation_flow_id": "conversation_flow_92cb555cb34d",
+    "version": 2,
+    "last_modification_timestamp": 1782497714062,
     "global_prompt": "Eres Jose, del equipo comercial de Transcoesca, una transitaria especializada en transporte maritimo de contenedores y grupaje entre la Peninsula y Canarias, entre las islas, y de forma puntual tambien Baleares e internacional. Llamas en frio a {{company_name}}. Tu objetivo es recoger los datos necesarios para que el equipo prepare una tarifa. NO vendes, NO das precios ni plazos y NO cierras nada: solo cualificas y recoges informacion para poder cotizar.\n\n## Trato e idioma\n- Habla SIEMPRE de tu (tutea). Usa 'tu' y 'vosotros'; nunca 'usted' ni 'le'. Eres cercano y con seguridad, como un comercial de verdad, no como una teleoperadora.\n- Castellano de Espana: 'vale', 'coger', 'os paso', 'genial'. Nunca espanol latinoamericano ni voseo (nada de 'ahorita', 'platicar', 'carro'). Nunca ingles ni muletillas en ingles.\n\n## Estilo\n- Una sola pregunta cada vez. Frases cortas. Reacciona a lo que dicen y no repitas su respuesta literal.\n- No sueltes todo de golpe. No insistas mas de una vez ante un 'no'. Si tienen prisa, ve a lo esencial.\n- Suena natural, con alguna muletilla, sin exagerar. VARIA los asentimientos: NO empieces casi todas las frases con 'Vale'. Alterna ('perfecto', 'genial', 'entiendo', 'ah, mira', 'estupendo', 'de acuerdo') y a veces ve directo a la pregunta sin asentir.\n- Si dicen 'espera', 'un momento' o 'no cuelgues', responde exactamente con NO_RESPONSE_NEEDED.\n\n## Que necesitas para cotizar (prioriza esto)\nImprescindible: si cargan completo o grupaje; origen y destino; tipo de contenedor y tipo de servicio. Importante: tipo de mercancia y sus particularidades, frecuencia y volumen, con quien trabajan ahora. Al final: si prefieren llamada o email, y su correo.\n\n## Objeciones (resuelvelas y sigue, sin insistir)\n- Precio o una cifra: no des numeros; di que depende de la ruta y el volumen y que justo por eso recoges los datos para pasarles tarifa. Continua.\n- Quien llama / de que va / de donde sacaste su numero: di que de Transcoesca, transitaria de transporte maritimo a Canarias, que su empresa encajaba como posible cliente y que solo quieres ver si les interesa comparar tarifas.\n- Origen o destino internacional o Baleares: di que no es la especialidad principal pero que lo mirais y les pasais precio igual; sigue cogiendo los datos.\n\n## Guardarrailes\n- No inventes datos de Transcoesca, ni precios, ni plazos.\n- Respeta siempre el 'no'. Termina con cordialidad, haya o no interes.",
     "nodes": [
       {
-        "id": "greeting",
-        "type": "conversation",
-        "name": "Apertura",
+        "else_edge": {
+          "destination_node_id": "pitch_permission",
+          "id": "edge_greet_proceed",
+          "transition_condition": {
+            "type": "prompt",
+            "prompt": "Else"
+          }
+        },
         "instruction": {
           "type": "prompt",
-          "text": "Saluda y presentate brevemente en tuteo, con una variacion natural de: \"Hola, soy Jose, de Transcoesca, una transitaria de transporte maritimo y grupaje entre la Peninsula y Canarias y entre las islas. Te aviso de que la llamada queda grabada. Te pillo en buen momento?\" Haz solo esta pregunta y espera respuesta."
+          "text": "Saluda y presentate brevemente en tuteo, con una variacion natural de: \"Hola, soy Jose, de Transcoesca, una transitaria de transporte maritimo y grupajes entre la Peninsula y Canarias y entre islas. Te pillo en buen momento?\" Haz solo esta pregunta y espera respuesta."
         },
+        "name": "Apertura",
         "edges": [
           {
             "destination_node_id": "busy_callback",
@@ -94,21 +267,15 @@
             }
           }
         ],
-        "else_edge": {
-          "destination_node_id": "pitch_permission",
-          "id": "edge_greet_proceed",
-          "transition_condition": { "type": "prompt", "prompt": "Else" }
-        },
-        "display_position": { "x": 6, "y": 600 }
+        "id": "greeting",
+        "type": "conversation",
+        "display_position": {
+          "x": 558,
+          "y": 6
+        }
       },
       {
-        "id": "pitch_permission",
-        "type": "conversation",
         "name": "Motivo y filtro",
-        "instruction": {
-          "type": "prompt",
-          "text": "Explica el motivo en tuteo y haz la pregunta filtro, con una variacion natural de: \"Te cuento rapido: en Transcoesca movemos transporte maritimo de contenedores y grupaje a Canarias y entre islas. Vosotros haceis algun envio de este tipo?\" Si confirma que si, anade que seria para pasarle vuestras tarifas sin compromiso, para que pueda comparar. Una pregunta cada vez."
-        },
         "edges": [
           {
             "destination_node_id": "split_carga",
@@ -127,37 +294,49 @@
             }
           }
         ],
-        "display_position": { "x": 534, "y": 600 }
-      },
-      {
-        "id": "split_carga",
+        "id": "pitch_permission",
         "type": "conversation",
-        "name": "Completo o grupaje",
+        "display_position": {
+          "x": 1110,
+          "y": 462
+        },
         "instruction": {
           "type": "prompt",
-          "text": "Pregunta en tuteo si mueven contenedor completo o grupaje, con una variacion natural de: \"Perfecto. Para pasarte tarifa, soleis mover contenedor completo, o mas bien grupaje, alguna pallet suelta?\" Una pregunta y espera."
+          "text": "Explica el motivo en tuteo y haz la pregunta filtro, con una variacion natural de: \"Te cuento rapido: en Transcoesca movemos transporte maritimo de contenedores y grupaje a Canarias principalmente. Vosotros haceis algun envio de este tipo?\" Si confirma que si, añade que seria para pasarle vuestras tarifas sin compromiso, para que pueda comparar. Una pregunta cada vez."
+        }
+      },
+      {
+        "else_edge": {
+          "destination_node_id": "ask_ruta",
+          "id": "edge_carga_completo",
+          "transition_condition": {
+            "type": "prompt",
+            "prompt": "Else"
+          }
         },
+        "instruction": {
+          "type": "prompt",
+          "text": "Pregunta en tuteo si mueven contenedor completo o grupaje, con una variacion natural de: \"Perfecto. Para poder pasarte una tarifa, soleis mover contenedores completos, grupaje o que tipo de servicio?\" Una pregunta y espera."
+        },
+        "name": "Completo o grupaje",
         "edges": [
           {
             "destination_node_id": "grupaje_block",
             "id": "edge_solo_grupaje",
             "transition_condition": {
               "type": "prompt",
-              "prompt": "El interlocutor indica que SOLO hacen grupaje o envios de pallets sueltas, sin contenedor completo."
+              "prompt": "El interlocutor afirma CLARAMENTE que SOLO mueven grupaje o pallets sueltas y que NO usan contenedor completo. MUY IMPORTANTE: fijate en la afirmacion, no en las palabras sueltas. Si dice que SI hacen contenedor completo (aunque nombre 'grupaje' solo para NEGARLO, por ejemplo 'siempre completo, no hacemos grupaje', o 'completo, nada de grupaje'), NO actives esta transicion: en ese caso se va por el Else (contenedor completo). Solo activala si lo unico que hacen es grupaje."
             }
           }
         ],
-        "else_edge": {
-          "destination_node_id": "ask_ruta",
-          "id": "edge_carga_completo",
-          "transition_condition": { "type": "prompt", "prompt": "Else" }
-        },
-        "display_position": { "x": 1062, "y": 600 }
+        "id": "split_carga",
+        "type": "conversation",
+        "display_position": {
+          "x": 1662,
+          "y": 510
+        }
       },
       {
-        "id": "ask_ruta",
-        "type": "conversation",
-        "name": "Origen y destino",
         "instruction": {
           "type": "prompt",
           "text": "Pide origen y destino lo mas completos posible, en tuteo, con una variacion natural de: \"Genial. Desde donde sale la mercancia y a que isla o destino va?\" Si solo te dan uno de los dos, pregunta el que falte. No avances hasta tener una idea de origen y destino."
@@ -165,19 +344,34 @@
         "always_edge": {
           "destination_node_id": "ask_contenedor",
           "id": "edge_ruta_done",
-          "transition_condition": { "type": "prompt", "prompt": "Always" }
+          "transition_condition": {
+            "type": "prompt",
+            "prompt": "Always"
+          }
         },
+        "name": "Origen y destino",
         "edges": [],
-        "display_position": { "x": 1590, "y": 600 }
+        "id": "ask_ruta",
+        "type": "conversation",
+        "display_position": {
+          "x": 2310,
+          "y": 1062
+        }
       },
       {
-        "id": "ask_contenedor",
-        "type": "conversation",
-        "name": "Tipo de contenedor",
+        "else_edge": {
+          "destination_node_id": "ask_servicio",
+          "id": "edge_contenedor_otro",
+          "transition_condition": {
+            "type": "prompt",
+            "prompt": "Else"
+          }
+        },
         "instruction": {
           "type": "prompt",
-          "text": "Pregunta SOLO por el tipo de contenedor (el servicio lo preguntaras justo despues), en tuteo, con una variacion natural de: \"Y que equipo usais, un veinte, un cuarenta, un reefer...? O algun equipo especial, open top, open side, flat rack, plataforma...?\" Una pregunta y espera. No preguntes todavia por el servicio puerta/muelle."
+          "text": "Pregunta SOLO por el tipo de contenedor (el servicio lo preguntaras justo despues), en tuteo, con una variacion natural de: \"Y que equipo usais, un veinte, un cuarenta, un reefer...? O algun equipo especial?\" Una pregunta y espera. No preguntes todavia por el servicio puerta/muelle."
         },
+        "name": "Tipo de contenedor",
         "edges": [
           {
             "destination_node_id": "branch_flatrack",
@@ -196,17 +390,14 @@
             }
           }
         ],
-        "else_edge": {
-          "destination_node_id": "ask_servicio",
-          "id": "edge_contenedor_otro",
-          "transition_condition": { "type": "prompt", "prompt": "Else" }
-        },
-        "display_position": { "x": 2118, "y": 600 }
+        "id": "ask_contenedor",
+        "type": "conversation",
+        "display_position": {
+          "x": 2958,
+          "y": 990
+        }
       },
       {
-        "id": "branch_flatrack",
-        "type": "conversation",
-        "name": "Trincaje (flat rack / open side / plataforma)",
         "instruction": {
           "type": "prompt",
           "text": "Este equipo (flat rack, open side, plataforma) hay que trincarlo. Pregunta en tuteo, de forma natural y una cosa cada vez: quien hace el trincaje (vosotros como cliente, el proveedor, o nuestro transportista) y que material necesita (cinta, plastico o cantoneras)."
@@ -214,15 +405,21 @@
         "always_edge": {
           "destination_node_id": "ask_servicio",
           "id": "edge_flatrack_done",
-          "transition_condition": { "type": "prompt", "prompt": "Always" }
+          "transition_condition": {
+            "type": "prompt",
+            "prompt": "Always"
+          }
         },
+        "name": "Trincaje (flat rack / open side / plataforma)",
         "edges": [],
-        "display_position": { "x": 2118, "y": 300 }
+        "id": "branch_flatrack",
+        "type": "conversation",
+        "display_position": {
+          "x": 3510,
+          "y": 1062
+        }
       },
       {
-        "id": "branch_opentop",
-        "type": "conversation",
-        "name": "Open top",
         "instruction": {
           "type": "prompt",
           "text": "En open top pregunta en tuteo, de forma natural y una cosa cada vez, si lo necesita con tapa o sin tapa, y si la tapa ha de ser rigida."
@@ -230,19 +427,22 @@
         "always_edge": {
           "destination_node_id": "ask_servicio",
           "id": "edge_opentop_done",
-          "transition_condition": { "type": "prompt", "prompt": "Always" }
+          "transition_condition": {
+            "type": "prompt",
+            "prompt": "Always"
+          }
         },
+        "name": "Open top",
         "edges": [],
-        "display_position": { "x": 2118, "y": 900 }
+        "id": "branch_opentop",
+        "type": "conversation",
+        "display_position": {
+          "x": 3510,
+          "y": 1494
+        }
       },
       {
-        "id": "ask_servicio",
-        "type": "conversation",
         "name": "Tipo de servicio",
-        "instruction": {
-          "type": "prompt",
-          "text": "Pregunta por el servicio en los DOS extremos, una pregunta cada vez, en tuteo. Primero el ORIGEN, con una variacion natural de: \"En origen, lo recogemos nosotros en vuestras instalaciones (en puerta) o lo llevais vosotros al muelle?\" Cuando te responda, pregunta el DESTINO: \"Y en destino, entrega en puerta, en vuestro almacen u obra, o lo recogeis vosotros en el muelle?\" El objetivo es la combinacion completa (puerta/puerta, muelle/muelle, muelle/puerta...). No avances hasta tener los dos extremos, salvo que la persona no lo distinga."
-        },
         "edges": [
           {
             "destination_node_id": "merch_subagent",
@@ -253,16 +453,19 @@
             }
           }
         ],
-        "display_position": { "x": 2382, "y": 600 }
-      },
-      {
-        "id": "merch_subagent",
-        "type": "subagent",
-        "name": "Particularidades de mercancia",
+        "id": "ask_servicio",
+        "type": "conversation",
+        "display_position": {
+          "x": 4062,
+          "y": 1350
+        },
         "instruction": {
           "type": "prompt",
-          "text": "Conversa con naturalidad, en tuteo, como un comercial que conoce el sector; no hagas un interrogatorio. Una sola pregunta cada vez y reconoce brevemente cada respuesta.\n\nPrimero, si aun no lo sabes, pregunta que tipo de mercancia mueven. Segun lo que te cuenten, profundiza SOLO en lo que aplique:\n\n- Vehiculos o maquinaria industrial: pregunta si necesita trincaje interno. Si lo hace el propio cliente, no hace falta mas; si lo hacemos nosotros, pregunta que material.\n- Placa de escayola o panel sandwich: lleva trincaje con cinta y cantoneras; confirmalo.\n- Material de reciclaje o chatarra: pregunta como viene (a granel, en paquetes, en sacas o en granalla/triturada), si la entrega necesita volquete, y si lleva IMO o ADR.\n- Alimentacion, comida o piensos: pregunta si va refrigerado y, si es asi, a que temperatura; y si lleva inspeccion fitosanitaria (y si es fisica o documental).\n- Bebidas y tabacos: pregunta si lleva documentacion especial y si va con IMO o ADR.\n- Plantas y abonos: pregunta si lleva inspeccion fitosanitaria.\n- Ceramica: pregunta si recogen en varios puntos (multistop) y si tienen despachante de aduanas propio.\n- Productos quimicos: pregunta si lleva IMO o ADR.\n\nNo preguntes por categorias que no apliquen. No insistas mas de una vez ante un 'no'. No des precios ni inventes nada."
-        },
+          "text": "Pregunta por el servicio en los DOS extremos, una pregunta cada vez, en tuteo. Primero el ORIGEN, con una variacion natural de: \"En origen, lo recogemos nosotros en vuestras instalaciones (en puerta) o lo llevais vosotros al muelle?\" Cuando te responda, pregunta el DESTINO: \"Y en destino, entrega en puerta, en vuestro almacen u obra, o lo recogeis vosotros en el muelle?\" El objetivo es la combinacion completa (puerta/puerta, muelle/muelle, muelle/puerta...). No avances hasta tener los dos extremos, salvo que la persona no lo distinga."
+        }
+      },
+      {
+        "name": "Particularidades de mercancia",
         "edges": [
           {
             "destination_node_id": "transversales_subagent",
@@ -273,16 +476,19 @@
             }
           }
         ],
-        "display_position": { "x": 2646, "y": 600 }
-      },
-      {
-        "id": "transversales_subagent",
+        "id": "merch_subagent",
         "type": "subagent",
-        "name": "Logistica de entrega y transbordo",
+        "display_position": {
+          "x": 4590,
+          "y": 1206
+        },
         "instruction": {
           "type": "prompt",
-          "text": "Conversa con naturalidad, en tuteo. Cubre solo lo que aplique, una pregunta cada vez:\n\n- Si el servicio es muelle-puerta o la entrega es en puerta: pregunta si hay un almacen logistico cerca de la zona portuaria, o donde esta el punto de entrega.\n- Descarga: pregunta de forma SENCILLA como descargan el contenedor al llegar al destino: si tienen muelle de carga y carretilla, o si necesitan que el camion deje el contenedor en el suelo para poder vaciarlo (eso es un camion grua tipo hammar, muy comun en Canarias). No uses la palabra 'hammar' de entrada si no la conocen; explicalo con 'dejar el contenedor en el suelo'. Preguntalo casi siempre, salvo que sea evidente que descargan en muelle.\n- Si el origen esta lejos de un puerto: pregunta como viene la mercancia (paletizada, con medidas estandar o excepcionales) para valorar si es transbordable.\n\nNo insistas. No des precios."
-        },
+          "text": "Conversa con naturalidad, en tuteo, como un comercial que conoce el sector; no hagas un interrogatorio. Una sola pregunta cada vez y reconoce brevemente cada respuesta.\n\nPrimero, si aun no lo sabes, pregunta que tipo de mercancia mueven. Segun lo que te cuenten, profundiza SOLO en lo que aplique:\n\n- Vehiculos o maquinaria industrial: pregunta si necesita trincaje interno. Si lo hace el propio cliente, no hace falta mas; si lo hacemos nosotros, pregunta que material.\n- Placa de escayola o panel sandwich: lleva trincaje con cinta y cantoneras; confirmalo.\n- Material de reciclaje o chatarra: pregunta como viene (a granel, en paquetes, en sacas o en granalla/triturada), si la entrega necesita volquete, y si lleva IMO o ADR.\n- Alimentacion, comida o piensos: pregunta si va refrigerado y, si es asi, a que temperatura; y si lleva inspeccion fitosanitaria (y si es fisica o documental).\n- Bebidas y tabacos: pregunta si lleva documentacion especial y si va con IMO o ADR.\n- Plantas y abonos: pregunta si lleva inspeccion fitosanitaria.\n- Ceramica: pregunta si recogen en varios puntos (multistop) y si tienen despachante de aduanas propio.\n- Productos quimicos: pregunta si lleva IMO o ADR.\n\nNo preguntes por categorias que no apliquen. No insistas mas de una vez ante un 'no'. No des precios ni inventes nada."
+        }
+      },
+      {
+        "name": "Logistica de entrega y transbordo",
         "edges": [
           {
             "destination_node_id": "ask_volumen",
@@ -293,12 +499,18 @@
             }
           }
         ],
-        "display_position": { "x": 3174, "y": 600 }
+        "id": "transversales_subagent",
+        "type": "subagent",
+        "display_position": {
+          "x": 5358,
+          "y": 1302
+        },
+        "instruction": {
+          "type": "prompt",
+          "text": "Conversa con naturalidad, en tuteo. Cubre solo lo que aplique, una pregunta cada vez:\n\n- Si el servicio es muelle-puerta o la entrega es en puerta: pregunta si hay un almacen logistico cerca de la zona portuaria, o donde esta el punto de entrega.\n- Descarga: pregunta de forma SENCILLA como descargan el contenedor al llegar al destino: si tienen muelle de carga y carretilla, o si necesitan que el camion deje el contenedor en el suelo para poder vaciarlo (eso es un camion grua tipo hammar, muy comun en Canarias). No uses la palabra 'hammar' de entrada si no la conocen; explicalo con 'dejar el contenedor en el suelo'. Preguntalo casi siempre, salvo que sea evidente que descargan en muelle.\n- Si el origen esta lejos de un puerto: pregunta como viene la mercancia (paletizada, con medidas estandar o excepcionales) para valorar si es transbordable.\n\nNo insistas. No des precios."
+        }
       },
       {
-        "id": "ask_volumen",
-        "type": "conversation",
-        "name": "Frecuencia y volumen",
         "instruction": {
           "type": "prompt",
           "text": "Pregunta por frecuencia y volumen, en tuteo, con una variacion natural de: \"Y cada cuanto soleis moverlo y que volumen, algun contenedor al mes, varios a la semana...?\" Recoge ambas cosas si puedes."
@@ -306,15 +518,21 @@
         "always_edge": {
           "destination_node_id": "ask_operador",
           "id": "edge_volumen_done",
-          "transition_condition": { "type": "prompt", "prompt": "Always" }
+          "transition_condition": {
+            "type": "prompt",
+            "prompt": "Always"
+          }
         },
+        "name": "Frecuencia y volumen",
         "edges": [],
-        "display_position": { "x": 3702, "y": 600 }
+        "id": "ask_volumen",
+        "type": "conversation",
+        "display_position": {
+          "x": 6102,
+          "y": 1470
+        }
       },
       {
-        "id": "ask_operador",
-        "type": "conversation",
-        "name": "Operador actual",
         "instruction": {
           "type": "prompt",
           "text": "Pregunta con quien trabajan ahora, en tuteo, con una variacion natural de: \"Y ahora con quien lo estais moviendo, con una naviera directa o con una transitaria? Y en concreto, con cual?\" Quieres el nombre del operador o la transitaria. Una pregunta y espera."
@@ -322,19 +540,34 @@
         "always_edge": {
           "destination_node_id": "close_recap",
           "id": "edge_operador_done",
-          "transition_condition": { "type": "prompt", "prompt": "Always" }
+          "transition_condition": {
+            "type": "prompt",
+            "prompt": "Always"
+          }
         },
+        "name": "Operador actual",
         "edges": [],
-        "display_position": { "x": 4230, "y": 600 }
+        "id": "ask_operador",
+        "type": "conversation",
+        "display_position": {
+          "x": 6654,
+          "y": 1446
+        }
       },
       {
-        "id": "close_recap",
-        "type": "conversation",
-        "name": "Resumen y preferencia",
+        "else_edge": {
+          "destination_node_id": "capture_slot",
+          "id": "edge_pref_llamada",
+          "transition_condition": {
+            "type": "prompt",
+            "prompt": "Else"
+          }
+        },
         "instruction": {
           "type": "prompt",
           "text": "Resume en una frase lo esencial (tipo de carga, origen-destino y contenedor) para confirmar que lo has cogido bien, agradece la info y di que el responsable comercial preparara la oferta. Luego pregunta como prefiere recibirla, con una variacion natural de: \"Prefieres que te llamemos para vertela con calma, o te la mandamos directamente por email?\" Una pregunta y espera."
         },
+        "name": "Resumen y preferencia",
         "edges": [
           {
             "destination_node_id": "capture_email",
@@ -345,21 +578,27 @@
             }
           }
         ],
-        "else_edge": {
-          "destination_node_id": "capture_slot",
-          "id": "edge_pref_llamada",
-          "transition_condition": { "type": "prompt", "prompt": "Else" }
-        },
-        "display_position": { "x": 4758, "y": 600 }
+        "id": "close_recap",
+        "type": "conversation",
+        "display_position": {
+          "x": 7206,
+          "y": 1398
+        }
       },
       {
-        "id": "capture_slot",
-        "type": "conversation",
-        "name": "Dia y franja",
+        "else_edge": {
+          "destination_node_id": "end_cotizar",
+          "id": "edge_slot_done",
+          "transition_condition": {
+            "type": "prompt",
+            "prompt": "Else"
+          }
+        },
         "instruction": {
           "type": "prompt",
           "text": "Pregunta que dia y franja le viene mejor para la llamada del responsable comercial, en tuteo, con una variacion natural de: \"Que dia y a que hora te viene bien que te llamemos, por la manana o por la tarde?\" Toma nota del dia y la franja. No avances hasta tenerlo o hasta que diga que prefiere no concretar."
         },
+        "name": "Dia y franja",
         "edges": [
           {
             "destination_node_id": "capture_email",
@@ -370,17 +609,14 @@
             }
           }
         ],
-        "else_edge": {
-          "destination_node_id": "end_cotizar",
-          "id": "edge_slot_done",
-          "transition_condition": { "type": "prompt", "prompt": "Else" }
-        },
-        "display_position": { "x": 5286, "y": 420 }
+        "id": "capture_slot",
+        "type": "conversation",
+        "display_position": {
+          "x": 7758,
+          "y": 2046
+        }
       },
       {
-        "id": "capture_email",
-        "type": "conversation",
-        "name": "Captura de email",
         "instruction": {
           "type": "prompt",
           "text": "Pide el email para enviar la oferta, en tuteo: \"A que correo te la mandamos?\" Si hay ruido o no queda claro, pide que te lo deletree. Repite el email que has entendido para confirmarlo antes de seguir. Si tras dos intentos no lo da con claridad, no insistas mas."
@@ -388,30 +624,36 @@
         "always_edge": {
           "destination_node_id": "end_cotizar",
           "id": "edge_email_done",
-          "transition_condition": { "type": "prompt", "prompt": "Always" }
+          "transition_condition": {
+            "type": "prompt",
+            "prompt": "Always"
+          }
         },
+        "name": "Captura de email",
         "edges": [],
-        "display_position": { "x": 5286, "y": 780 }
+        "id": "capture_email",
+        "type": "conversation",
+        "display_position": {
+          "x": 8310,
+          "y": 1662
+        }
       },
       {
+        "name": "Cierre cotizacion",
         "id": "end_cotizar",
         "type": "end",
-        "name": "Cierre cotizacion",
         "speak_during_execution": true,
+        "display_position": {
+          "x": 8862,
+          "y": 1662
+        },
         "instruction": {
           "type": "prompt",
           "text": "Despidete en tuteo confirmando el siguiente paso, con una variacion natural de: \"Genial, pues con esto el responsable comercial te prepara la oferta y te la hacemos llegar como hemos dicho. Muchas gracias por tu tiempo, que te vaya muy bien!\""
-        },
-        "display_position": { "x": 5814, "y": 600 }
+        }
       },
       {
-        "id": "grupaje_block",
-        "type": "subagent",
         "name": "Datos de grupaje",
-        "instruction": {
-          "type": "prompt",
-          "text": "El cliente solo hace grupaje. Conversa con naturalidad, en tuteo, y recoge los datos que necesitamos para cotizar un grupaje, una pregunta cada vez: codigo postal o poblacion de carga y de descarga, numero de pallets, medidas (largo, alto y ancho), peso, tipo de mercancia, y si los pallets se pueden remontar (apilar). No hace falta ser exhaustivo si tiene prisa; con lo esencial vale."
-        },
         "edges": [
           {
             "destination_node_id": "grupaje_email",
@@ -422,12 +664,18 @@
             }
           }
         ],
-        "display_position": { "x": 1590, "y": 1100 }
+        "id": "grupaje_block",
+        "type": "subagent",
+        "display_position": {
+          "x": 2190,
+          "y": 486
+        },
+        "instruction": {
+          "type": "prompt",
+          "text": "El cliente solo hace grupaje. Conversa con naturalidad, en tuteo, y recoge los datos que necesitamos para cotizar un grupaje, una pregunta cada vez: codigo postal o poblacion de carga y de descarga, numero de pallets, medidas (largo, alto y ancho), peso, tipo de mercancia, y si los pallets se pueden remontar (apilar). No hace falta ser exhaustivo si tiene prisa; con lo esencial vale."
+        }
       },
       {
-        "id": "grupaje_email",
-        "type": "conversation",
-        "name": "Email plantilla grupaje",
         "instruction": {
           "type": "prompt",
           "text": "Dile que le envias una plantilla de grupaje para que la rellene con calma y pidele el email, en tuteo: \"Te mando una plantilla rapida para que la rellenes y te coticemos el grupaje. A que correo te la envio?\" Repite el email para confirmarlo. Si tras dos intentos no lo da claro, no insistas."
@@ -435,37 +683,49 @@
         "always_edge": {
           "destination_node_id": "end_grupaje",
           "id": "edge_grupaje_email_done",
-          "transition_condition": { "type": "prompt", "prompt": "Always" }
+          "transition_condition": {
+            "type": "prompt",
+            "prompt": "Always"
+          }
         },
+        "name": "Email plantilla grupaje",
         "edges": [],
-        "display_position": { "x": 2118, "y": 1100 }
+        "id": "grupaje_email",
+        "type": "conversation",
+        "display_position": {
+          "x": 2958,
+          "y": 558
+        }
       },
       {
+        "name": "Cierre grupaje",
         "id": "end_grupaje",
         "type": "end",
-        "name": "Cierre grupaje",
         "speak_during_execution": true,
+        "display_position": {
+          "x": 3510,
+          "y": 582
+        },
         "instruction": {
           "type": "prompt",
           "text": "Despidete en tuteo, con una variacion natural de: \"Perfecto, te mando ahora mismo la plantilla de grupaje a ese correo. En cuanto la tengas rellena, te pasamos tarifa. Muchas gracias y un saludo!\""
-        },
-        "display_position": { "x": 2646, "y": 1100 }
+        }
       },
       {
+        "name": "No aplica",
         "id": "end_decline",
         "type": "end",
-        "name": "No aplica",
         "speak_during_execution": true,
+        "display_position": {
+          "x": 1662,
+          "y": 1014
+        },
         "instruction": {
           "type": "prompt",
           "text": "Despidete con cordialidad en tuteo, con una variacion natural de: \"Nada, sin problema. Si en algun momento movais algo a las islas, aqui nos tienes. Que vaya muy bien!\""
-        },
-        "display_position": { "x": 1062, "y": 360 }
+        }
       },
       {
-        "id": "busy_callback",
-        "type": "conversation",
-        "name": "Pedir hora de rellamada",
         "instruction": {
           "type": "prompt",
           "text": "Responde en tuteo con una variacion natural de: \"Sin problema, cuando te viene mejor que te llame?\" Haz solo esta pregunta y toma nota del dia u hora. No insistas."
@@ -473,118 +733,141 @@
         "always_edge": {
           "destination_node_id": "end_busy",
           "id": "edge_busy_noted",
-          "transition_condition": { "type": "prompt", "prompt": "Always" }
+          "transition_condition": {
+            "type": "prompt",
+            "prompt": "Always"
+          }
         },
+        "name": "Pedir hora de rellamada",
         "edges": [],
-        "display_position": { "x": 534, "y": 100 }
+        "id": "busy_callback",
+        "type": "conversation",
+        "display_position": {
+          "x": 1110,
+          "y": 78
+        }
       },
       {
+        "name": "Cierre rellamada",
         "id": "end_busy",
         "type": "end",
-        "name": "Cierre rellamada",
         "speak_during_execution": true,
+        "display_position": {
+          "x": 1662,
+          "y": 78
+        },
         "instruction": {
           "type": "prompt",
           "text": "Despidete en tuteo, con una variacion natural de: \"Genial, te llamo entonces. Gracias y hasta luego!\""
-        },
-        "display_position": { "x": 1062, "y": 100 }
+        }
       },
       {
-        "id": "global_opt_out",
-        "type": "end",
-        "name": "Global: no volver a llamar",
-        "speak_during_execution": true,
-        "global_node_setting": {
-          "condition": "El interlocutor pide expresamente que no se le vuelva a llamar o que se le borre de la lista (por ejemplo: 'no me llameis mas', 'borradme de la lista', 'no quiero que me contacteis')."
-        },
         "instruction": {
           "type": "prompt",
           "text": "Confirma la baja en tuteo, con una variacion natural de: \"Claro, te quito de la lista ahora mismo. Perdona la molestia, un saludo!\""
         },
-        "display_position": { "x": 6, "y": 1500 }
+        "name": "Global: no volver a llamar",
+        "global_node_setting": {
+          "condition": "El interlocutor pide expresamente que no se le vuelva a llamar o que se le borre de la lista (por ejemplo: 'no me llameis mas', 'borradme de la lista', 'no quiero que me contacteis')."
+        },
+        "id": "global_opt_out",
+        "type": "end",
+        "speak_during_execution": true,
+        "display_position": {
+          "x": 6,
+          "y": 438
+        }
       },
       {
-        "id": "global_not_interested",
-        "type": "end",
-        "name": "Global: no me interesa",
-        "speak_during_execution": true,
-        "global_node_setting": {
-          "condition": "El interlocutor expresa con claridad que no le interesa (por ejemplo: 'no me interesa', 'no, gracias', 'no nos hace falta'). No se aplica si solo esta ocupado o pide que le llamen mas tarde.",
-          "cool_down": 2
-        },
         "instruction": {
           "type": "prompt",
           "text": "Respeta el no en tuteo, con una variacion natural de: \"Lo entiendo, gracias por atenderme. Que te vaya bien!\""
         },
-        "display_position": { "x": 534, "y": 1500 }
+        "name": "Global: no me interesa",
+        "global_node_setting": {
+          "condition": "El interlocutor expresa con claridad que no le interesa (por ejemplo: 'no me interesa', 'no, gracias', 'no nos hace falta'). No se aplica si solo esta ocupado o pide que le llamen mas tarde.",
+          "cool_down": 2
+        },
+        "id": "global_not_interested",
+        "type": "end",
+        "speak_during_execution": true,
+        "display_position": {
+          "x": 6,
+          "y": 822
+        }
       },
       {
-        "id": "global_contestador",
-        "type": "end",
-        "name": "Global: contestador",
-        "speak_during_execution": true,
-        "global_node_setting": {
-          "condition": "Se detecta que ha saltado un contestador o buzon de voz, o no hay una persona real respondiendo (locucion grabada, silencio tras el saludo)."
-        },
         "instruction": {
           "type": "prompt",
           "text": "Deja un mensaje muy breve en tuteo y finaliza, con una variacion natural de: \"Os llamabamos de Transcoesca por el transporte de mercancia a Canarias. Lo intentamos de nuevo. Gracias!\""
         },
-        "display_position": { "x": 1062, "y": 1500 }
+        "name": "Global: contestador",
+        "global_node_setting": {
+          "condition": "Se detecta que ha saltado un contestador o buzon de voz, o no hay una persona real respondiendo (locucion grabada, silencio tras el saludo)."
+        },
+        "id": "global_contestador",
+        "type": "end",
+        "speak_during_execution": true,
+        "display_position": {
+          "x": 6,
+          "y": 1182
+        }
       },
       {
-        "id": "global_quienes_sois",
-        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Aclara en tuteo, con una variacion natural de: \"Nada raro: te llamo de Transcoesca, una transitaria de transporte maritimo a Canarias. Tu empresa nos encajaba como posible cliente y solo queria ver si te interesa comparar tarifas.\" Luego retoma la conversacion donde estabas."
+        },
         "name": "Global: quienes sois",
         "global_node_setting": {
           "condition": "El interlocutor pregunta quien llama, de que empresa, de que va la llamada o de donde habeis sacado su numero, o muestra desconfianza.",
           "cool_down": 2
         },
-        "instruction": {
-          "type": "prompt",
-          "text": "Aclara en tuteo, con una variacion natural de: \"Nada raro: te llamo de Transcoesca, una transitaria de transporte maritimo a Canarias. Tu empresa nos encajaba como posible cliente y solo queria ver si te interesa comparar tarifas.\" Luego retoma la conversacion donde estabas."
-        },
         "edges": [],
-        "display_position": { "x": 1590, "y": 1500 }
+        "id": "global_quienes_sois",
+        "type": "conversation",
+        "display_position": {
+          "x": 6,
+          "y": 1566
+        }
       },
       {
-        "id": "global_precio",
-        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "No des precios. Responde en tuteo, con una variacion natural de: \"Buena pregunta, pero no te suelto un numero al tuntun porque depende mucho de la ruta y del volumen. Justo por eso te cojo los datos y el responsable comercial te pasa una tarifa cerrada.\" Luego retoma donde estabas."
+        },
         "name": "Global: piden precio",
         "global_node_setting": {
           "condition": "El interlocutor pide un precio, una cifra, una tarifa concreta o cuanto costaria.",
           "cool_down": 1
         },
-        "instruction": {
-          "type": "prompt",
-          "text": "No des precios. Responde en tuteo, con una variacion natural de: \"Buena pregunta, pero no te suelto un numero al tuntun porque depende mucho de la ruta y del volumen. Justo por eso te cojo los datos y el responsable comercial te pasa una tarifa cerrada.\" Luego retoma donde estabas."
-        },
         "edges": [],
-        "display_position": { "x": 2118, "y": 1500 }
+        "id": "global_precio",
+        "type": "conversation",
+        "display_position": {
+          "x": 6,
+          "y": 1998
+        }
       },
       {
-        "id": "global_internacional_baleares",
-        "type": "conversation",
+        "instruction": {
+          "type": "prompt",
+          "text": "Responde en tuteo, con una variacion natural de: \"Eso no es nuestra especialidad principal, pero lo miramos y te pasamos precio igual.\" Luego sigue recogiendo los datos que falten."
+        },
         "name": "Global: internacional o Baleares",
         "global_node_setting": {
           "condition": "El origen o el destino es internacional (importacion o exportacion) o son las Islas Baleares.",
           "cool_down": 2
         },
-        "instruction": {
-          "type": "prompt",
-          "text": "Responde en tuteo, con una variacion natural de: \"Eso no es nuestra especialidad principal, pero lo miramos y te pasamos precio igual.\" Luego sigue recogiendo los datos que falten."
-        },
         "edges": [],
-        "display_position": { "x": 2646, "y": 1500 }
+        "id": "global_internacional_baleares",
+        "type": "conversation",
+        "display_position": {
+          "x": 6,
+          "y": 2430
+        }
       },
       {
-        "id": "global_ahora_no_puedo",
-        "type": "conversation",
-        "name": "Global: ahora no puedo",
-        "global_node_setting": {
-          "condition": "A mitad de la conversacion el interlocutor dice que ahora no puede seguir, que esta liado o que le llameis en otro momento.",
-          "cool_down": 1
-        },
         "instruction": {
           "type": "prompt",
           "text": "Responde en tuteo con una variacion natural de: \"Sin problema, no te robo mas tiempo.\" y pasa a acordar cuando llamarle."
@@ -592,18 +875,25 @@
         "always_edge": {
           "destination_node_id": "busy_callback",
           "id": "edge_global_busy",
-          "transition_condition": { "type": "prompt", "prompt": "Always" }
+          "transition_condition": {
+            "type": "prompt",
+            "prompt": "Always"
+          }
+        },
+        "name": "Global: ahora no puedo",
+        "global_node_setting": {
+          "condition": "A mitad de la conversacion el interlocutor dice que ahora no puede seguir, que esta liado o que le llameis en otro momento.",
+          "cool_down": 1
         },
         "edges": [],
-        "display_position": { "x": 3174, "y": 1500 }
+        "id": "global_ahora_no_puedo",
+        "type": "conversation",
+        "display_position": {
+          "x": 558,
+          "y": 606
+        }
       },
       {
-        "id": "global_nuevo_interlocutor",
-        "type": "conversation",
-        "name": "Global: nuevo interlocutor",
-        "global_node_setting": {
-          "condition": "Se pone otra persona al telefono (te dicen 'te paso', 'ahora se pone' o contesta una voz distinta)."
-        },
         "instruction": {
           "type": "prompt",
           "text": "Presentate de nuevo brevemente en tuteo y avisa de la grabacion, con una variacion natural de: \"Hola! Soy Jose, de Transcoesca; te aviso de que la llamada queda grabada. Te llamo por el transporte de mercancia a Canarias.\" Luego retoma el motivo de la llamada."
@@ -611,19 +901,24 @@
         "always_edge": {
           "destination_node_id": "pitch_permission",
           "id": "edge_global_nuevo",
-          "transition_condition": { "type": "prompt", "prompt": "Always" }
+          "transition_condition": {
+            "type": "prompt",
+            "prompt": "Always"
+          }
+        },
+        "name": "Global: nuevo interlocutor",
+        "global_node_setting": {
+          "condition": "Se pone otra persona al telefono (te dicen 'te paso', 'ahora se pone' o contesta una voz distinta)."
         },
         "edges": [],
-        "display_position": { "x": 3702, "y": 1500 }
+        "id": "global_nuevo_interlocutor",
+        "type": "conversation",
+        "display_position": {
+          "x": 558,
+          "y": 966
+        }
       },
       {
-        "id": "global_email_only",
-        "type": "conversation",
-        "name": "Global: solo email",
-        "global_node_setting": {
-          "condition": "El interlocutor insiste en que solo quiere recibir informacion por email y no quiere llamada, pero sin pedir que no le contacteis nunca mas.",
-          "cool_down": 1
-        },
         "instruction": {
           "type": "prompt",
           "text": "Acepta su preferencia en tuteo, con una variacion natural de: \"Claro, te lo mando por email sin problema.\" y pasa a pedirle el correo."
@@ -631,21 +926,46 @@
         "always_edge": {
           "destination_node_id": "capture_email",
           "id": "edge_global_email",
-          "transition_condition": { "type": "prompt", "prompt": "Always" }
+          "transition_condition": {
+            "type": "prompt",
+            "prompt": "Always"
+          }
+        },
+        "name": "Global: solo email",
+        "global_node_setting": {
+          "condition": "El interlocutor insiste en que solo quiere recibir informacion por email y no quiere llamada, pero sin pedir que no le contacteis nunca mas.",
+          "cool_down": 1
         },
         "edges": [],
-        "display_position": { "x": 4230, "y": 1500 }
+        "id": "global_email_only",
+        "type": "conversation",
+        "display_position": {
+          "x": 7758,
+          "y": 1686
+        }
       }
     ],
     "start_node_id": "greeting",
     "start_speaker": "agent",
-    "model_choice": { "type": "cascading", "model": "gpt-5.1" },
+    "model_choice": {
+      "type": "cascading",
+      "model": "gpt-5.1",
+      "high_priority": true
+    },
     "tool_call_strict_mode": true,
-    "default_dynamic_variables": { "company_name": "tu empresa" },
+    "default_dynamic_variables": {
+      "company_name": "tu empresa"
+    },
     "knowledge_base_ids": [],
-    "kb_config": { "top_k": 3, "filter_score": 0.6 },
-    "begin_tag_display_position": { "x": 122, "y": 333 },
-    "is_published": false,
+    "kb_config": {
+      "top_k": 3,
+      "filter_score": 0.6
+    },
+    "begin_tag_display_position": {
+      "x": 6,
+      "y": 102
+    },
+    "is_published": true,
     "is_transfer_cf": false
   }
 }
