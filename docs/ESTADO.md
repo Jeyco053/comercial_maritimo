@@ -1,8 +1,8 @@
 # Estado del proyecto y registro de cambios
 
 > Documento para retomar el trabajo desde cualquier PC. Resume **qué es el proyecto hoy**,
-> **qué se ha hecho** y **qué queda pendiente**. Última actualización: tras el afinado de
-> conversación (commit `eb3df65`).
+> **qué se ha hecho** y **qué queda pendiente**. Última actualización: n8n sincronizado a 43
+> campos (tras el afinado de conversación, commit `eb3df65`).
 
 ## 1. Qué es (en una frase)
 
@@ -87,10 +87,10 @@ plazos/tarifas), reconducir señales de compra.
 `agent/post-call-analysis.md`. Los nombres deben coincidir EXACTO entre flow, `google-sheet/columns.md`
 (50 columnas) y el nodo "Construir ficha" de `n8n/workflow-handoff.json`.
 
-⚠️ **DESINCRONIZADO:** el flow tiene **43 campos** (incluye `trincaje_certificado` + `peso`,
-`dimensiones`, `grua_izado`, `permisos_especiales`). `columns.md` ya está a 50 columnas, pero el
-**n8n aún mapea 39 campos con el nombre viejo `trincaje_material`** → hay que **regenerar el Code node
-de n8n** (renombrar `trincaje_material`→`trincaje_certificado` + añadir los 4 nuevos). Ver §8.
+✅ **SINCRONIZADO:** flow **43 campos** = n8n **43 mapeos** = `columns.md` **50 columnas**
+(43 + 7 derivadas: fecha/empresa/telefono/estado_llamada/resumen/grabacion_url/closer_status).
+El Code node de n8n ya usa `trincaje_certificado` + `peso`, `dimensiones`, `grua_izado`,
+`permisos_especiales` (verificado por script).
 
 - **13 cualificación:** envia_a_canarias, interesado, tipo_mercancia, origen_mercancia,
   destino_mercancia, frecuencia_y_volumen, operador_actual, mejoras_deseadas, es_decisor,
@@ -113,7 +113,7 @@ de n8n** (renombrar `trincaje_material`→`trincaje_certificado` + añadir los 4
 | `agent/prompt.md` | LEGACY (single-prompt, en usted) |
 | `docs/test-personas.md` | **Personas para el AI simulated chat** (P1–P26), verificadas |
 | `google-sheet/columns.md` | 50 columnas de la hoja |
-| `n8n/workflow-handoff.json` | Webhook → Construir ficha → Google Sheets (**pendiente regen a 43**) |
+| `n8n/workflow-handoff.json` | Webhook → Construir ficha → Google Sheets (43 campos, sincronizado) |
 | `scripts/normalize-phones.mjs` | Apify JSON → CSV E.164 para Retell Batch |
 | `scripts/fetch-calls.mjs` | Vuelca llamadas de Retell a CSV (handoff manual) |
 | `scripts/test-call.mjs` | **Lanza una llamada de prueba real** con Retell |
@@ -135,14 +135,14 @@ de n8n** (renombrar `trincaje_material`→`trincaje_certificado` + añadir los 4
     `split_carga` inteligente.
 - [x] `scripts/test-call.mjs` para prueba de llamada real.
 - [x] `docs/test-personas.md` con 26 personas de prueba (verificadas por workflow).
+- [x] **n8n sincronizado a 43 campos** (flow = n8n = columns; verificado por script).
 
 ## 8. Pendiente / próximos pasos
 
 1. **Prueba de teléfono real (rápida, sin Twilio):** en Retell → Phone Numbers coge un número US;
    asígnalo al agente; rellena `.env` (RETELL_API_KEY, RETELL_FROM_NUMBER, RETELL_AGENT_ID); lanza
    `node scripts/test-call.mjs +34TUMOVIL "Empresa"`. Caller ID +1, solo para probar la voz.
-2. **Regenerar el Code node de n8n** a los **43 campos** (renombrar `trincaje_material` →
-   `trincaje_certificado` y añadir `peso`, `dimensiones`, `grua_izado`, `permisos_especiales`).
+2. ~~Regenerar el Code node de n8n a los 43 campos~~ ✅ **HECHO** (flow = n8n = columns, verificado).
 3. **Google Sheet:** crear la hoja con la cabecera de `google-sheet/columns.md` (50 columnas).
 4. **n8n:** importar el workflow, credencial Google Sheets, documento/pestaña, activar, y pegar la
    URL del webhook (Production) en el `webhook_url` del agente.
